@@ -4,11 +4,17 @@
 
 <h1>Rotten Mangoes</h1>
 <%= link_to "Submit a movie!", new_movie_path %>
+
+<h4>Search for by title, director, or description:</h4>
+<%= render 'search_form' %>
+
+
+<h2>All movies:</h2>
 <hr>
 <% @movies.each do |movie| %>
+  <br>
   <%= link_to image_tag(movie.poster_image_url, :width => "200"), movie_path(movie) %>
   <h2><%= link_to movie.title, movie_path(movie) %> | <%= movie.review_average %>/10</h2>
-  <!-- <h3><%= movie.release_date %></h3> -->
   <h3><%= formatted_date(movie.release_date) %></h3>
   <h4>Dir. <%= movie.director %> | <%= movie.runtime_in_minutes %> minutes</h4>
   <%= image_tag movie.image_url(:thumb).to_s %>   <!-- .to_s to avoid problem of nil if no image -->
